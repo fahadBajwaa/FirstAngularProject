@@ -18,7 +18,7 @@ We don't edit these usually.
 3. Public/ : (from Angular 18) ​🟥
 
 This folder is used to store all public assets like images and icons. 
-The public/ folder is designated for storing static files that your application needs to serve directly to the browser without any processing by Angular. This includes:​
+The public/ folder is designated for storing static files that our application needs to serve directly to the browser without any processing by Angular. This includes:​
 Images: Logos, icons, and other graphics.
 Fonts: Custom font files.
 Documents: PDFs or other downloadable files.
@@ -40,3 +40,33 @@ This tells Angular to include all files from the public/ folder in the build out
 
 
 4.  src/ folder: ​🟥
+
+ this works as the “engine room” for app’s functionality.
+
+-> app.component.ts:	The main “brain” of the root component. Defines a TypeScript class with data & logic.
+-> app.component.html:	The view/template for that component—HTML markup we see on screen.
+-> app.component.css:	The local styles for the component—colors, spacing, fonts applied only here.
+-> app.component.spec.ts:	A test file generated for us; it can check that our component works correctly.
+-> app.config.ts:	A place to store configuration values (e.g. API endpoints, feature flags).
+-> app.routes.ts:	Defines our application’s routes—which component to show for which URL path.
+
+--- Other files in src/
+
+-> index.html:	The shell HTML that the browser loads first. It holds <app-root> where Angular injects our app.
+-> main.ts:	The bootstrap file. It tells Angular: “Load the root module and start the app.”
+-> styles.css:	Global CSS—styles here apply across all components.
+
+
+5.  Root-level files (beside src/) ​🟥
+
+When we run ng new, the CLI also creates these configuration and metadata files:
+
+-> .editorconfig:	Ensures consistent code formatting across editors (tabs vs. spaces, line breaks).
+-> .gitignore: 	Lists files/folders (like node_modules) that Git should ignore when we commit.
+-> angular.json:	The Angular CLI config: tells Angular how to build, serve, and test our app.
+-> package.json:	Project manifest: lists our app’s dependencies (Angular, other libraries) and scripts (e.g. ng serve).
+-> package-lock.json:	Locks exact versions of every dependency, ensuring consistent installs for everyone.
+-> README.md:	A markdown file where we can describe our project, how to run it, etc.
+-> tsconfig.json:	The base TypeScript config for the entire project.
+-> tsconfig.app.json:	TypeScript settings specific to our application code (excludes test files).
+-> tsconfig.spec.json:	TypeScript settings for our test environment.
