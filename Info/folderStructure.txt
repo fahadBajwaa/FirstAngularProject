@@ -39,4 +39,4 @@ With Angular 18, this configuration looks like:​
 This tells Angular to include all files from the public/ folder in the build output.​
 
 
-4.  
+4.  src/ folder: ​🟥
