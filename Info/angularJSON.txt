@@ -1,0 +1,103 @@
+🟢  Angular json Info ---------------
+
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json", // Specifies the schema for Angular CLI configuration
+  "version": 1, // Configuration file format version
+  "newProjectRoot": "projects", // Directory for new projects
+  "projects": {    
+    "my-firstangular-project": { // Name of Angular project
+      "projectType": "application", // Indicates this is an application
+      "schematics": {}, // Default schematics settings
+      "root": "", // Root directory of the project
+      "sourceRoot": "src", // Directory containing source files
+      "prefix": "app", // Prefix for component selectors
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application", // Tool used for building the application
+          "options": {
+            "outputPath": "dist/my-firstangular-project", // Directory for build output
+            "index": "src/index.html", // Main HTML file
+            "browser": "src/main.ts", // Entry point of the application
+            "polyfills": [
+              "zone.js" // Polyfills for browser compatibility
+            ],
+            "tsConfig": "tsconfig.app.json", // TypeScript configuration file
+            "assets": [
+              {
+                "glob": "**/*", // Pattern to match asset files
+                "input": "public", // Source directory for assets
+                "output": "" // Destination directory for assets
+              }
+            ],
+            "styles": [
+              "src/styles.css" // Global styles
+            ],
+            "scripts": [] // Global scripts
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial", // Budget type for initial load
+                  "maximumWarning": "500kB", // Warning threshold
+                  "maximumError": "1MB" // Error threshold
+                },
+                {
+                  "type": "anyComponentStyle", // Budget type for component styles
+                  "maximumWarning": "4kB", // Warning threshold
+                  "maximumError": "8kB" // Error threshold
+                }
+              ],
+              "outputHashing": "all" // Adds hashes to filenames for caching
+            },
+            "development": {
+              "optimization": false, // Disables optimization for easier debugging
+              "extractLicenses": false, // Disables license extraction
+              "sourceMap": true // Generates source maps for debugging
+            }
+          },
+          "defaultConfiguration": "production" // Default build configuration
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server", // Tool used for serving the application
+          "configurations": {
+            "production": {
+              "buildTarget": "my-firstangular-project:build:production" // Target for production build
+            },
+            "development": {
+              "buildTarget": "my-firstangular-project:build:development" // Target for development build
+            }
+          },
+          "defaultConfiguration": "development" // Default serve configuration
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n" // Tool for extracting internationalization messages
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma", // Tool used for running tests
+          "options": {
+            "polyfills": [
+              "zone.js", // Polyfills for browser compatibility
+              "zone.js/testing" // Additional polyfills for testing
+            ],
+            "tsConfig": "tsconfig.spec.json", // TypeScript configuration for tests
+            "assets": [
+              {
+                "glob": "**/*", // Pattern to match asset files
+                "input": "public", // Source directory for assets
+                "output": "" // Destination directory for assets
+              }
+            ],
+            "styles": [
+              "src/styles.css" // Global styles for tests
+            ],
+            "scripts": [] // Global scripts for tests
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "cb1c5c0c-ebf5-4e30-9f19-3479fa11a6b3" // Analytics tracking ID
+  }
+}

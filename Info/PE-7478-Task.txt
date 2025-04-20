@@ -108,3 +108,36 @@ so the styles live in separate files that are easy to edit, reuse, and benefit f
  -Choose "styles" when we only need a handful of CSS rules (e.g., under ten lines) so we can avoid having too many files and keep everything in one place.
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 4. Angular Build Process: Study how Angular compiles and bundles the application by examining the structure and options in angular.json.
+
+​🟥 How Angular compiles and bundles the application?
+
+[1] angular.json
+      ↓
+[2] ng serve command
+      ↓
+[3] architect → serve → development
+      ↓
+[4] buildTarget: my-firstangular-project:build:development
+      ↓
+[5] architect → build → development
+      ↓
+[6] options
+      ↓
+├── index.html      ← HTML skeleton
+├── main.ts         ← Entry point (bootstraps Angular)
+│     ↓
+│   app.module.ts   ← Root Angular module
+│     ↓
+│   app.component.ts/html/css ← Root component (view logic)
+├── styles.css      ← Global styles
+├── assets/         ← Static files (e.g., images, icons)
+├── polyfills       ← Adds browser compatibility
+└── tsconfig.app.json ← TypeScript compiler settings
+
+
+
+
