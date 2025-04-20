@@ -79,3 +79,32 @@ In any component’s .scss file, use nesting, variables, and mixins directly:
 
 - 🟨 Compile & Serve:
 Run "ng serve" —the CLI watches SCSS files, compiles to CSS, and reloads in the browser automatically.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🟢 2. Injecting Styles in TypeScript: Explore methods to apply styles from .scss or .css files directly into components via styleUrls, and how to use inline styles when needed.
+
+Details provided in file "app.component.ts".
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 3. styleUrls vs styles: Understand the difference between using styleUrls (external files) and styles (inline), and when each should be used.
+
+​🟥 Difference b/w styleUrls & styles:
+
+- "styleUrls" lets us link one or more external CSS or SCSS files to a component, 
+so the styles live in separate files that are easy to edit, reuse, and benefit from full editor tooling.
+
+- "styles" let us write small bits of CSS directly inside the @Component decorator as inline strings,
+ which is perfect for quick or dynamic tweaks without creating extra files.
+
+ ​🟥 What to Choose b/w styleUrls & styles?
+
+- Choose "styleUrls" when the component has many styles or we want to share style files across multiple components—separate files keep the project organized and maintainable.
+
+ -Choose "styles" when we only need a handful of CSS rules (e.g., under ten lines) so we can avoid having too many files and keep everything in one place.
+
+
