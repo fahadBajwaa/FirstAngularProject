@@ -1,0 +1,23 @@
+
+// Inherit base settings from tsconfig.json
+"extends": "./tsconfig.json",
+
+"compilerOptions": {
+
+  // Output just for application code
+  "outDir": "./out-tsc/app",
+
+  "types": []  // No extra types by default
+
+},
+
+// Entry point for the app build
+"files": [
+  "src/main.ts"
+],
+
+// Include any auto‑generated type declarations
+
+"include": [
+  "src/**/*.d.ts"
+]

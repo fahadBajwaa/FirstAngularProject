@@ -1,7 +1,10 @@
 # Editor configuration, see https://editorconfig.org
+
+; EditorConfig helps keep coding styles consistent across editors
 root = true
 
-[*]
+[*] ; Apply these rules to all files
+
 charset = utf-8
 indent_style = space
 indent_size = 2

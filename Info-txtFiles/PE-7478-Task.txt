@@ -139,5 +139,94 @@ so the styles live in separate files that are easy to edit, reuse, and benefit f
 └── tsconfig.app.json ← TypeScript compiler settings
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 5. Default Configuration Files: Review key configuration files and their roles in the Angular build and dev experience:
+
+
+​🟥 angular.json:
+
+Role: Tells the Angular CLI how to build, serve, and test the app (entry points, assets, output folders) 
+What’s inside: Build options (outputPath, index, main), asset and style lists, and named “configurations” for production vs. development 
+If deleted: The CLI won’t know how to compile or serve the app—you’ll get errors like “Could not find project in workspace.”
+
+​🟥 tsconfig.json:
+
+Role: Defines TypeScript compiler settings for the entire workspace (target JS version, strict checks) 
+What’s inside: Rules like target: "ES2022", strict: true, module resolution, plus Angular‑specific compiler options under angularCompilerOptions 
+If deleted: tsc (and ng build) will fall back to defaults or fail entirely, causing type errors and possibly preventing the code from compiling.
+
+​🟥 tsconfig.app.json:
+
+Role: Extends tsconfig.json with settings specific to building the application code (not tests) 
+What’s inside: Inherits from tsconfig.json, sets outDir for app output, and lists files like src/main.ts to include 
+If deleted: The CLI won’t know which files make up the app or where to put compiled output, leading to build failures.
+
+​🟥 tsconfig.spec.json:
+
+Role: Provides TypeScript settings for running the unit tests (via Karma/Jasmine) 
+What’s inside: Inherits from tsconfig.json, points at test entry files, and may include test‑specific types like jasmine 
+If deleted: Tests will not compile or run, as the CLI can’t configure TypeScript for the spec files.
+
+​🟥 app.routes.ts:
+
+Role: Defines the application’s route table—mapping URL paths to components 
+What’s inside: An exported routes array of { path, component } objects, used by provideRouter(routes) 
+If deleted: Navigation in the app will break—there’ll be no route definitions, so links and URL changes won’t render the correct views.
+
+​🟥 app.config.ts:
+
+Role: Bundles up application‑wide providers (like routing and change‑detection settings) for standalone bootstrapping 
+What’s inside: An ApplicationConfig object with providers such as provideZoneChangeDetection(...) and provideRouter(routes) 
+If deleted: the app won’t know about routing or zone‑based change detection settings—bootstrap may fail or run with default (and likely unwanted) behavior.
+
+​🟥 main.ts:
+
+Role: The runtime entry point that launches the Angular app via bootstrapApplication(...) 
+What’s inside: Imports of bootstrapApplication, AppComponent (or other root components), and the appConfig, then calls .catch(...) for errors 
+If deleted: The application never starts—there’s no code to bootstrap the root component into index.html.
+
+​🟥 index.html:
+
+Role: The base HTML page loaded by the browser, containing the <app-root></app-root> placeholder for Angular to render into.
+What’s inside: Standard <head> tags (<meta>, <base href="/">, favicon), plus <body><app-root></app-root></body>.
+If deleted: the app has nowhere to render; the browser shows a blank page or 404.
+
+​🟥 .editorconfig:
+
+Role: Instructs editors/IDEs how to format files (indent size, line endings) for consistency across the team 
+What’s inside: Key‑value rules like indent_style = space, indent_size = 2, end_of_line = lf 
+If deleted: Developers may have mixed formatting (tabs vs. spaces, wrong line endings), leading to messy diffs—but the code still compiles.
+
+​🟥 package.json:
+
+Role: Describes the project (name, version) and lists dependencies, scripts, and metadata for npm 
+What’s inside: Fields like "dependencies", "devDependencies", "scripts" (e.g., ng serve, ng build), and project info 
+If deleted: npm can’t install or run scripts; we lose all dependency definitions—your app won’t build or run.
+
+​🟥 package-lock.json:
+
+Role: Locks exact versions of every installed package to ensure consistent installs across machines 
+What’s inside: A full dependency tree with resolved versions and integrity hashes 
+If deleted: npm will re-resolve versions on each install, potentially installing newer (and untested) versions—introducing “it works on my machine” problems.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 6. Bootstrap Process in Angular: Analyze how Angular bootstraps the app using files like main.ts and AppModule.
+
+When we run "ng serve", Angular initializes your application through a series of steps:
+
+index.html
+   ↓
+main.ts
+   ↓
+AppModule (app.module.ts)
+   ↓
+AppComponent (app.component.ts)
+   ↓
+AppComponent Template (app.component.html)
+
 
 

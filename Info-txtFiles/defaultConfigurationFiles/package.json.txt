@@ -1,0 +1,31 @@
+// Project metadata and npm scripts
+
+{
+  // My project’s name
+  "name": "my-firstangular-project",
+
+  // Version of app
+  "version": "0.0.0",
+
+  // Where to look when running commands like `ng serve`
+
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",   
+    "build": "ng build",
+    // etc…
+  },
+
+  // Runtime dependencies your app needs
+  "dependencies": {
+    "@angular/core": "^17.3.12",
+    "rxjs": "^7.8.1",
+    "zone.js": "~0.14.3"
+  },
+  
+  // Development‑only tools
+  "devDependencies": {
+    "@angular/cli": "^17.3.12",
+    "typescript": "~5.2.2"
+  }
+}
