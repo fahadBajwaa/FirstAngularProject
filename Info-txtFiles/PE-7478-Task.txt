@@ -245,3 +245,15 @@ what assets and styles to bundle, and which settings to use for production vs. d
 In short, tsconfig.json is for the TypeScript compiler, while angular.json is for the Angular CLI toolchain that packages and runs the application.
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 8. Angular in the Browser: Discover how Angular works in the browser including DOM rendering, and compare Angular's change detection mechanism to React’s virtual DOM strategy.
+
+​🟥 Angular: (change detection)
+Uses a change detection mechanism to directly update the real DOM.​
+
+​🟥 React: (diffing - necessary updation only)
+Employs a Virtual DOM to efficiently determine and apply necessary updates to the real DOM.​
+
+
