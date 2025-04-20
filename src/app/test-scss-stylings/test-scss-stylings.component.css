@@ -1,0 +1,44 @@
+body {
+  --primary-color: #e74c3c;
+  --gap-size: 1rem;
+}
+
+/* Nesting (verbose in CSS) */
+.nav-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav-menu li {
+  display: inline-block;
+}
+.nav-menu a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+  color: white;
+  background-color: #3498db;
+}
+
+/* Variables via CSS custom properties */
+
+.btn {
+  background-color: var(--primary-color);
+  margin: var(--gap-size);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+/* “Mixin” equivalent (manual duplication) */
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  background: #2ecc71;
+  margin: 1rem auto;
+  color: white;
+}

@@ -1,0 +1,71 @@
+// 1. Nesting
+
+//In SCSS, we write it like the HTML structure itself, which makes it easier to read and manage.
+
+.nav-menu {  // class
+
+  ul {     // HTML element selector, not a sub-class.
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    display: inline-block;
+  }
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: white;
+    background-color: #3498db;
+  }
+}
+
+// 2. Variables
+$primary-color: #e74c3c;
+$gap-size: 1rem;
+
+.btn {
+  background-color: $primary-color;
+  margin: $gap-size;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+// 3. Mixins
+
+// A mixin in SCSS defines a reusable block of styles that we can include in multiple selectors via "@include".
+
+@mixin center-box($size) { //reusable block
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $size;
+  height: $size;
+}
+
+.box {
+  @include center-box(150px);    // including center-box here
+  //additional properties mentioned here
+  background: #2ecc71;
+  margin: 1rem auto;
+  color: white;
+}
+
+
+// 4. Functions
+
+// Custom SCSS function to return half of a given number
+@function half($value) {
+  @return $value / 2;
+}
+
+.result {
+  width: half(100%) + 0%; 
+  background-color: darkblue;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+}

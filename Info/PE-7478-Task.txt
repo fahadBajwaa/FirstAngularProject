@@ -1,0 +1,81 @@
+🟢 1. CSS vs SCSS: Understand the key differences between CSS and SCSS, and why SCSS is preferred in Angular projects for features like nesting, variables, and mixins.
+
+- Superset of CSS.
+
+- SCSS (Sassy CSS) is a CSS pre-processor syntax that extends vanilla CSS by adding programming-style feature,
+then compiles down to standard CSS before being served to browsers.
+
+- It’s fully compatible with existing CSS: any valid CSS file is also valid SCSS, plus we get extra powerful capabilities.
+
+​🟥 Key differences between SCSS and CSS:
+
+- 🟨 Nesting: 
+SCSS allows to nest selector inside one another, mirroring HTML structure and avoiding repetition., whereas
+CSS requires each selector to be declared separately.
+
+- 🟨 Variables:
+SCSS supports variables (e.g. $primary-color: #3498db;) that let us store reusable values for colors, font sizes, breakpoints, etc., 
+while CSS variables (custom properties) are newer and limited to modern browsers
+
+- 🟨 Mixins:
+Mixins in SCSS let us define reusable blocks of styles (e.g. @mixin center { display: flex; justify-content: center; })
+and include them anywhere with @include, a feature absent in plain CSS.
+
+- 🟨 Partials & Imports:
+SCSS enables to break stylesheets into modular “partials” (files prefixed with _) and import them into a main file, 
+improving organization—CSS lacks a native import mechanism that supports modularization.
+
+
+- 🟨 Functions & Operations:
+Beyond simple math operations (e.g. width: $base * 2;), 
+SCSS offers built‑in functions for color manipulation, string operations, and more, enabling dynamic style generation.
+
+
+​🟥 Why SCSS Is Preferred in Angular Projects? --> " ng new my-angular-app --style=scss "
+
+- 🟨 Built‑In Angular CLI Support:
+The Angular CLI lets us create a new project with SCSS out of the box using ng new MyApp --style=scss, making setup effortless.
+
+- 🟨 Component‑Level Styling:
+Angular’s component architecture encourages encapsulated styles; SCSS variables and mixins make it easy to share design tokens (colors, spacing scales) across components.
+
+- 🟨 Maintainability & Scalability
+Nesting and partials help maintain a clear folder structure for large projects, reducing CSS bloat and avoiding selector collisions.
+
+- 🟨 Theming & Reusability:
+SCSS variables and mixins facilitate creating theme files (light/dark modes) that can be swapped or extended, streamlining global style changes.
+
+
+​🟥 Getting Started with SCSS in Angular:
+
+- 🟨 Create a New Angular Project with SCSS:
+
+" ng new my-angular-app --style=scss "
+This configures the CLI to generate .scss files for new components by default.
+
+
+- 🟨 Global Styles & Variables: 
+
+Define global variables and mixins in "src/styles/_variables.scss" and "src/styles/_mixins.scss".
+
+In angular.json, ensure "styles": ["src/styles.scss"] is set and import partials there:
+
+@import 'styles/variables';
+@import 'styles/mixins';
+``` :contentReference[oaicite:14]{index=14}.
+
+- 🟨 Using SCSS in Components:
+
+In any component’s .scss file, use nesting, variables, and mixins directly:
+
+@import '../styles/variables';
+
+.card {
+  @include box-shadow(0 2px 4px rgba(0,0,0,0.1));
+  h2 {
+    color: $primary-color;
+  }
+}
+
+- 🟨 Compile & Serve:
+Run "ng serve" —the CLI watches SCSS files, compiles to CSS, and reloads in the browser automatically.
