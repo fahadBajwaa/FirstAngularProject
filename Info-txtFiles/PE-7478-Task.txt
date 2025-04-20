@@ -216,7 +216,7 @@ If deleted: npm will re-resolve versions on each install, potentially installing
 
 🟢 6. Bootstrap Process in Angular: Analyze how Angular bootstraps the app using files like main.ts and AppModule.
 
-When we run "ng serve", Angular initializes your application through a series of steps:
+When we run "ng serve", Angular initializes the application through a series of steps:
 
 index.html
    ↓
@@ -228,5 +228,20 @@ AppComponent (app.component.ts)
    ↓
 AppComponent Template (app.component.html)
 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 7. Understanding the Differences: Difference between tsconfig.json and angular.json, and their respective responsibilities in compiling and building Angular apps.
+
+​🟥 tsconfig.json: 
+tells TypeScript how to turn the .ts code into JavaScript—what language level to target, 
+which files to include, and which strict‑type checks to apply.
+
+​🟥 angular.json: 
+tells the Angular CLI how to build, serve, and test the app—where the entry files live, 
+what assets and styles to bundle, and which settings to use for production vs. development.
+
+In short, tsconfig.json is for the TypeScript compiler, while angular.json is for the Angular CLI toolchain that packages and runs the application.
 
 
