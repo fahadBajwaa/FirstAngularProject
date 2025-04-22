@@ -22,4 +22,9 @@ export class UserComponent {
 
     return 'assets/users/' + this.selectedUsers.avatar; //  used this keyword, to access the property of a class from within that same class.
   }
+
+  // method for event
+  onSelectUser(){
+    console.log("User clicked")
+  }
 }
