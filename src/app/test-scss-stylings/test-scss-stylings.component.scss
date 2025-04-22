@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // 1. Nesting
 
 //In SCSS, we write it like the HTML structure itself, which makes it easier to read and manage.
@@ -59,7 +61,9 @@ $gap-size: 1rem;
 
 // Custom SCSS function to return half of a given number
 @function half($value) {
-  @return $value / 2;
+  // @return $value / 2;
+  @return math.div($value, 2);
+
 }
 
 .result {

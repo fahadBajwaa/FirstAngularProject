@@ -1,14 +1,8 @@
-import { bootstrapApplication } from '@angular/platform-browser';  // Standalone API to bootstrap my root component
-import { appConfig } from './app/app.config'; // App‑wide providers (router, change detection, etc.)
-import { AppComponent } from './app/app.component'; // my root component
-// import { SecondComponent } from './app/second/second.component';
-import {TestSCSSStylingsComponent} from './app/test-scss-stylings/test-scss-stylings.component';
+import { bootstrapApplication } from '@angular/platform-browser';
 
-bootstrapApplication(AppComponent, appConfig).catch((err) => // Bootstraps AppComponent with the provided configuration
-  console.error(err)
-);
+import { AppComponent } from './app/app.component';
+// import { NgModelDemoComponent } from './app/ng-model-demo.component';
 
-// bootstrapApplication(SecondComponent);
-bootstrapApplication(TestSCSSStylingsComponent);
+bootstrapApplication(AppComponent).catch((err) => console.error(err));
 
-
+// bootstrapApplication(NgModelDemoComponent).catch(err => console.error(err));

@@ -1,0 +1,145 @@
+🟢 1. What is Angular Component? How can we use One Component in other Component?
+
+​🟥 In "main.ts" file:
+
+forExample:
+
+bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err) );
+bootstrapApplication(TestSCSSStylingsComponent); 
+
+This isn't a good and recommended approach(Calling bootstrapApplication() more than once), 
+
+as Angular supports the idea of a 🟨"Component Tree", with root component (AppComponent) at the top and other components nested in it. 
+So using this idea, we will only call bootStrapApplication function "ONCE".
+
+​🟥 Why we use this approach?
+
+Because with Component Tree approach, all those compoents will be a part of same Tree, same Angular ApplicationInitStatus, therefore will be able to 
+work together, exchange Data, i.e. communcate with each other. 
+
+​🟥 How to use this?
+
+We will have one main root Component (AppComponent) and then use any other Component, in that component Template (configuration will be in the "ts" file).
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🟢 2.  Binding Concepts:
+
+​🟥 String Interpolation:
+
+In template file(html), we use two-curly brackets "{{ }}" and inside these we refer our public proerty from our component class.
+If the property is private, it will not be available to template file but within only its class.
+
+Only use between tags i.e, " <span>{{selectedUsers.name}}</span> "
+
+​🟥 Property Binding:
+
+a key Angular feature that allows to bind element properties to dynamic values.
+
+Property Binding syntax, in this we warp the DOM element's property with square brackets [] and the assigning value inside the quotations
+        " <img [src]="selectedUsers.avatar"/> " , "src" is binded here, not "img"
+
+ The above line will not display image correctly due to missing path.
+
+        <img [src]=" 'assets/users/' +selectedUsers.avatar" [alt]="selectedUsers.name"/> 
+        
+Here we added a string with ( ' ' ) which contains fixed value(path) and then concatenate it with our property's value. 
+
+Since "Property Binding" wants to target properties (and not attributes), that can be a problem. 
+That's why Angular offers a slight variation of the "Property Binding" syntax that does allow us to bind attributes to dynamic values.
+
+
+- 🟨 Attributes are defined in the HTML code and provide initial configuration for HTML elements. They are part of the HTML markup and are always represented as strings.
+- 🟨 Properties are part of the Document Object Model (DOM), which is the browser's representation of the HTML elements. They reflect the current state of elements and can change over time, especially through user interaction or JavaScript.
+
+
+​🟥 Attribute Binding:
+
+In Angular, when we want to bind dynamic values to standard HTML attributes, we use attribute binding. 
+This is especially important for ARIA attributes, as they are not standard DOM properties.
+
+By adding "attr" in front of the (attribute name) we want to bind dynamically, we're "telling" Angular that it shouldn't try to find a "property" with the specified name but instead bind the respective attribute.
+
+in the example below, the aria-valuenow and aria-valuemax attributes would be bound dynamically.
+
+<div 
+  role="progressbar" 
+  [attr.aria-valuenow]="currentVal" 
+  [attr.aria-valuemax]="maxVal">...</div>
+
+
+​🟥 Event Binding:
+
+Here we "read/listen user input" which update the UI upon executed.
+
+button -> (event) {added event listener} -> listen for clicked events -> Output something (on console | UI updation) 
+
+In Angular, we wrap the event name with paranthesis "()" and then "=" and further in quotation we put the code or call the method from component which will be executed.
+
+
+​🟥 Managing State and Changing Data:
+
+Updating UI based on user click (some event) -> In event, data inside the class component changes -> State Updated.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 3. How "Change Detection mechanism" works in Angular? What is the actual way to optimize it?
+
+​🟥 Change Detection Mechanism:  
+
+     " roots -> child components -> compare the current value with the previous values of DOM Tree "
+
+now if we use, "onPush" strategy, it will optimize the code in such way that it makes change detection mechanism specific to a component change only and avoiding checking all of the app components. 
+
+But in case of  "default" , angular will check each and every component for change rendering.
+
+In this way, our code is optimized using "onPush" strategy.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 4. Component vs Module:
+
+🟨 Components:
+A component controls a patch of screen called a “view” and is defined by a TypeScript class paired with an HTML template and optional CSS. We mark a class as a component using the @Component decorator, which specifies its selector, template URL, and styles.
+
+🟨 Modules:
+An NgModule is a class decorated with @NgModule that organizes related parts of  app—components, directives, pipes, and services—into a cohesive block. It declares which components belong to it and lists other modules to import, controlling compilation and dependency injection scopes.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 5. Two-Way Binding:
+
+Two-Way Binding uses the [(ngModel)]="property" syntax to combine property and event binding into a single notation, keeping the view and component in sync.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 6. Directives:
+
+​🟥 Angular’s built‑in directives let us alter the structure and appearance of the DOM:
+
+*ngIf conditionally includes or removes an element and its children based on a truthy/falsy expression.
+*ngFor repeats a template for each item in a list, exposing the current item and index to the template.
+ngClass adds and removes CSS classes on an element dynamically, based on component expressions.
+ngStyle sets inline styles dynamically on an element, driven by component data.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 7. Lifecycle Hooks:
+
+​🟥 Lifecycle hooks are methods we can implement in a component to run code at specific moments:
+
+ngOnChanges(changes) is called whenever an @Input property changes, receiving a SimpleChanges object.
+ngOnInit() runs once after the first ngOnChanges, ideal for component initialization logic.
+ngAfterViewInit() fires after Angular has fully initialized the component’s view and its child views.
+ngOnDestroy() executes just before Angular destroys the component, perfect for cleanup tasks like unsubscribing from Observables.
