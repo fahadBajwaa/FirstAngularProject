@@ -257,3 +257,18 @@ Uses a change detection mechanism to directly update the real DOM.​
 Employs a Virtual DOM to efficiently determine and apply necessary updates to the real DOM.​
 
 
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 9. How "Change Detection mechanism" works in Angular? What is the actual way to optimize it?
+
+​🟥 Change Detection Mechanism:  
+
+     " roots -> child components -> compare the current value with the previous values of DOM Tree "
+
+now if we use, "onPush" strategy, it will optimize the code in such way that it makes change detection mechanism specific to a component change only and avoiding checking all of the app components. 
+
+But in case of  "default" , angular will check each and every component for change rendering.
+
+In this way, our code is optimized using "onPush" strategy.
