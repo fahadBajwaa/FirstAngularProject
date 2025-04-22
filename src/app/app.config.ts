@@ -5,7 +5,7 @@ import { routes } from './app.routes'; // My route definitions
 
 export const appConfig: ApplicationConfig = {    // ApplicationConfig bundles providers at bootstrap
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),  // Set up Angular’s NgZone with event coalescing
+    provideZoneChangeDetection({ eventCoalescing: true }),  // Set up Angular’s NgZone 
     provideRouter(routes)]     // Initialize the router with my routes
 
 };

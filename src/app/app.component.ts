@@ -3,11 +3,14 @@ import { FirstComponent } from './first-component/first.component';
 import { SecondComponent } from './second/second.component';
 import { TestSCSSStylingsComponent } from "./test-scss-stylings/test-scss-stylings.component";
 
-@Component({
+@Component({   // Marks a class as UI component and provides its metadata
   selector: 'app-root',
   standalone: true,
   imports: [ TestSCSSStylingsComponent],
   templateUrl: './app.component.html',
+  
+  // changeDetection: onpush, // This must be reviewed
+
   styleUrls: ['./app.component.css'],  // if it is Urls, then in square brackets
   // styleUrl: './app.component.css' //  we can reference .css or .scss
 })
