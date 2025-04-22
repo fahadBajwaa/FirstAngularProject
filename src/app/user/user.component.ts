@@ -13,5 +13,6 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);   //Math.flo
   styleUrl: './user.component.css'
 })
 export class UserComponent {
+  // private selectedUsers = DUMMY_USERS[randomIndex];  // In case of private property, it will not be available to template but only within the class.
   selectedUsers = DUMMY_USERS[randomIndex];  // this line declares a class property named selectedUsers and initializes it with a value from the DUMMY_USERS array. In TypeScript, when defining properties within a class, we don't use let or const. These keywords are reserved for variable declarations within function or block scopes.
 }
