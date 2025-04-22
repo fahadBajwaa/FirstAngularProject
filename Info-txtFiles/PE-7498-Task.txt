@@ -1,0 +1,22 @@
+🟢 1. What is Angular Component? How can we use One Component in other Component?
+
+​🟥 In "main.ts" file:
+
+forExample:
+
+bootstrapApplication(AppComponent, appConfig).catch((err) => console.error(err) );
+bootstrapApplication(TestSCSSStylingsComponent); 
+
+This isn't a good and recommended approach(Calling bootstrapApplication() more than once), 
+
+as Angular supports the idea of a 🟨"Component Tree", with root component (AppComponent) at the top and other components nested in it. 
+So using this idea, we will only call bootStrapApplication function "ONCE".
+
+​🟥 Why we use this approach?
+
+Because with Component Tree approach, all those compoents will be a part of same TreeWalker, same Angular ApplicationInitStatus, therefore will be able to 
+work together, exchange Data, i.e. communcate with each other. 
+
+​🟥 How to use this?
+
+We will have one main root Component (AppComponent) and then use any other Component, in that component Template (configuration will be in the "ts" file).
