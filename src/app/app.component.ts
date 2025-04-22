@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { FirstComponent } from './first-component/first.component';
-import { SecondComponent } from './second/second.component';
 import { TestSCSSStylingsComponent } from "./test-scss-stylings/test-scss-stylings.component";
 
 @Component({   // Marks a class as UI component and provides its metadata
