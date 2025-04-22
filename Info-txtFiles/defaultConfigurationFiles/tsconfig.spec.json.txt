@@ -1,0 +1,20 @@
+// Shares settings with tsconfig.json
+"extends": "./tsconfig.json",
+
+"compilerOptions": {
+
+  // Output just for tests
+  "outDir": "./out-tsc/app",
+
+  "types": []  // Will pick up test frameworks via your test runner
+
+},
+
+// Usually points at your test main (can also include spec files)
+
+"files": [
+  "src/main.ts"
+],
+"include": [
+  "src/**/*.d.ts"
+]

@@ -1,0 +1,281 @@
+🟢  Angular json Info ---------------
+
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json", // Specifies the schema for Angular CLI configuration
+  "version": 1, // Configuration file format version
+  "newProjectRoot": "projects", // Directory for new projects
+  "projects": {    
+    "my-firstangular-project": { // Name of Angular project
+      "projectType": "application", // Indicates this is an application
+      "schematics": {}, // Default schematics settings
+      "root": "", // Root directory of the project
+      "sourceRoot": "src", // Directory containing source files
+      "prefix": "app", // Prefix for component selectors
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application", // Tool used for building the application
+          "options": {
+            "outputPath": "dist/my-firstangular-project", // Directory for build output
+            "index": "src/index.html", // Main HTML file
+            "browser": "src/main.ts", // Entry point of the application
+            "polyfills": [
+              "zone.js" // Polyfills for browser compatibility
+            ],
+            "tsConfig": "tsconfig.app.json", // TypeScript configuration file
+            "assets": [
+              {
+                "glob": "**/*", // Pattern to match asset files
+                "input": "public", // Source directory for assets
+                "output": "" // Destination directory for assets
+              }
+            ],
+            "styles": [
+              "src/styles.css" // Global styles
+            ],
+            "scripts": [] // Global scripts
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial", // Budget type for initial load
+                  "maximumWarning": "500kB", // Warning threshold
+                  "maximumError": "1MB" // Error threshold
+                },
+                {
+                  "type": "anyComponentStyle", // Budget type for component styles
+                  "maximumWarning": "4kB", // Warning threshold
+                  "maximumError": "8kB" // Error threshold
+                }
+              ],
+              "outputHashing": "all" // Adds hashes to filenames for caching
+            },
+            "development": {
+              "optimization": false, // Disables optimization for easier debugging
+              "extractLicenses": false, // Disables license extraction
+              "sourceMap": true // Generates source maps for debugging
+            }
+          },
+          "defaultConfiguration": "production" // Default build configuration
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server", // Tool used for serving the application
+          "configurations": {
+            "production": {
+              "buildTarget": "my-firstangular-project:build:production" // Target for production build
+            },
+            "development": {
+              "buildTarget": "my-firstangular-project:build:development" // Target for development build
+            }
+          },
+          "defaultConfiguration": "development" // Default serve configuration
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n" // Tool for extracting internationalization messages
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma", // Tool used for running tests
+          "options": {
+            "polyfills": [
+              "zone.js", // Polyfills for browser compatibility
+              "zone.js/testing" // Additional polyfills for testing
+            ],
+            "tsConfig": "tsconfig.spec.json", // TypeScript configuration for tests
+            "assets": [
+              {
+                "glob": "**/*", // Pattern to match asset files
+                "input": "public", // Source directory for assets
+                "output": "" // Destination directory for assets
+              }
+            ],
+            "styles": [
+              "src/styles.css" // Global styles for tests
+            ],
+            "scripts": [] // Global scripts for tests
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "cb1c5c0c-ebf5-4e30-9f19-3479fa11a6b3" // Analytics tracking ID
+  }
+}
+
+
+
+
+----------------------------------------------------------------------
+
+
+// Points to the JSON schema that defines valid structure for this file
+"$schema": "./node_modules/@angular/cli/lib/config/schema.json",  
+
+// Version of the Angular CLI workspace file format
+"version": 1,                                  
+
+// Where new projects will be created by default (`ng generate`)
+"newProjectRoot": "projects",        
+
+"projects": {          
+
+  "my-firstangular-project": {     
+
+    // We're building an “application” (not a library)
+    "projectType": "application",                  
+
+    // Custom defaults for CLI generators (empty here)
+    "schematics": {},                           
+
+    // Root path of this project (empty means top‐level)
+    "root": "",      
+
+    // Directory containing source (TS, HTML, CSS) files
+    "sourceRoot": "src",   
+
+    // Prefix for generated component selectors (`app-`)
+    "prefix": "app",          
+
+    "architect": {        
+
+      "build": {                  
+
+        // Uses the standard browser build process
+        "builder": "@angular-devkit/build-angular:application",  
+
+        "options": {           
+
+          // Where to write compiled files
+          "outputPath": "dist/my-firstangular-project",  
+
+          // Entry HTML that hosts the app
+          "index": "src/index.html",      
+
+          // Main TypeScript file that kicks everything off
+          "browser": "src/main.ts",                  
+
+          // Polyfills for older browsers (Angular needs Zone.js)
+          "polyfills": [                             
+            "zone.js"                                
+          ], 
+
+          // TS config specific to the app build
+          "tsConfig": "tsconfig.app.json",    
+
+          // Static assets (images, etc.) to copy over
+          "assets": [      
+
+            {
+              // Include all files…
+              "glob": "**/*",        
+
+              // …from this folder…
+              "input": "public",       
+
+              // …into the root of the build output
+              "output": ""            
+
+            }
+          ],          
+
+          // Global CSS (or SCSS) you want bundled
+          "styles": [
+            "src/styles.css"
+          ],           
+
+          // Any global JS scripts to include
+          "scripts": []
+
+        },
+
+        "configurations": {
+
+          "production": {
+
+            // Warn/error if bundles exceed these sizes
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "500kB",
+                "maximumError": "1MB"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "4kB",
+                "maximumError": "8kB"
+              }
+            ],
+
+            // Add hashes to filenames for better caching
+            "outputHashing": "all"
+          },
+
+          "development": {
+
+            // Don't minify, bundle as-is for easier debugging
+
+            "optimization": false,
+            "extractLicenses": false,
+
+            // Generate source maps
+            "sourceMap": true
+          }
+        },
+
+        // Uses `production` settings by default
+        "defaultConfiguration": "production"
+      },
+
+      "serve": {
+
+        // Dev server configuration
+        "builder": "@angular-devkit/build-angular:dev-server",
+
+        "configurations": {
+          "production": {
+            "buildTarget": "my-firstangular-project:build:production"
+          },
+          "development": {
+            "buildTarget": "my-firstangular-project:build:development"
+          }
+        },
+        "defaultConfiguration": "development"
+      },
+
+      "extract-i18n": {
+        // For pulling out translation markers - internationalization, languages.etc
+        "builder": "@angular-devkit/build-angular:extract-i18n"
+
+      },
+      "test": {
+
+        // Karma test runner settings
+        "builder": "@angular-devkit/build-angular:karma",
+        "options": {
+          "polyfills": [
+            "zone.js",
+            "zone.js/testing"
+          ],
+          "tsConfig": "tsconfig.spec.json",
+          "assets": [
+            {
+              "glob": "**/*",
+              "input": "public",
+              "output": ""
+            }
+          ],
+          "styles": [
+            "src/styles.css"
+          ],
+          "scripts": []
+        }
+      }
+    }
+  }
+},
+"cli": {
+    
+  // CLI telemetry ID (you can remove or leave it)
+  "analytics": "cb1c5c0c-ebf5-4e30-9f19-3479fa11a6b3"
+}
+

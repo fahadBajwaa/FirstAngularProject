@@ -1,0 +1,274 @@
+🟢 1. CSS vs SCSS: Understand the key differences between CSS and SCSS, and why SCSS is preferred in Angular projects for features like nesting, variables, and mixins.
+
+- Superset of CSS.
+
+- SCSS (Sassy CSS) is a CSS pre-processor syntax that extends vanilla CSS by adding programming-style feature,
+then compiles down to standard CSS before being served to browsers.
+
+- It’s fully compatible with existing CSS: any valid CSS file is also valid SCSS, plus we get extra powerful capabilities.
+
+​🟥 Key differences between SCSS and CSS:
+
+- 🟨 Nesting: 
+SCSS allows to nest selector inside one another, mirroring HTML structure and avoiding repetition., whereas
+CSS requires each selector to be declared separately.
+
+- 🟨 Variables:
+SCSS supports variables (e.g. $primary-color: #3498db;) that let us store reusable values for colors, font sizes, breakpoints, etc., 
+while CSS variables (custom properties) are newer and limited to modern browsers
+
+- 🟨 Mixins:
+Mixins in SCSS let us define reusable blocks of styles (e.g. @mixin center { display: flex; justify-content: center; })
+and include them anywhere with @include, a feature absent in plain CSS.
+
+- 🟨 Partials & Imports:
+SCSS enables to break stylesheets into modular “partials” (files prefixed with _) and import them into a main file, 
+improving organization—CSS lacks a native import mechanism that supports modularization.
+
+
+- 🟨 Functions & Operations:
+Beyond simple math operations (e.g. width: $base * 2;), 
+SCSS offers built‑in functions for color manipulation, string operations, and more, enabling dynamic style generation.
+
+
+​🟥 Why SCSS Is Preferred in Angular Projects? --> " ng new my-angular-app --style=scss "
+
+- 🟨 Built‑In Angular CLI Support:
+The Angular CLI lets us create a new project with SCSS out of the box using ng new MyApp --style=scss, making setup effortless.
+
+- 🟨 Component‑Level Styling:
+Angular’s component architecture encourages encapsulated styles; SCSS variables and mixins make it easy to share design tokens (colors, spacing scales) across components.
+
+- 🟨 Maintainability & Scalability
+Nesting and partials help maintain a clear folder structure for large projects, reducing CSS bloat and avoiding selector collisions.
+
+- 🟨 Theming & Reusability:
+SCSS variables and mixins facilitate creating theme files (light/dark modes) that can be swapped or extended, streamlining global style changes.
+
+
+​🟥 Getting Started with SCSS in Angular:
+
+- 🟨 Create a New Angular Project with SCSS:
+
+" ng new my-angular-app --style=scss "
+This configures the CLI to generate .scss files for new components by default.
+
+
+- 🟨 Global Styles & Variables: 
+
+Define global variables and mixins in "src/styles/_variables.scss" and "src/styles/_mixins.scss".
+
+In angular.json, ensure "styles": ["src/styles.scss"] is set and import partials there:
+
+@import 'styles/variables';
+@import 'styles/mixins';
+``` :contentReference[oaicite:14]{index=14}.
+
+- 🟨 Using SCSS in Components:
+
+In any component’s .scss file, use nesting, variables, and mixins directly:
+
+@import '../styles/variables';
+
+.card {
+  @include box-shadow(0 2px 4px rgba(0,0,0,0.1));
+  h2 {
+    color: $primary-color;
+  }
+}
+
+- 🟨 Compile & Serve:
+Run "ng serve" —the CLI watches SCSS files, compiles to CSS, and reloads in the browser automatically.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+🟢 2. Injecting Styles in TypeScript: Explore methods to apply styles from .scss or .css files directly into components via styleUrls, and how to use inline styles when needed.
+
+Details provided in file "app.component.ts".
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 3. styleUrls vs styles: Understand the difference between using styleUrls (external files) and styles (inline), and when each should be used.
+
+​🟥 Difference b/w styleUrls & styles:
+
+- "styleUrls" lets us link one or more external CSS or SCSS files to a component, 
+so the styles live in separate files that are easy to edit, reuse, and benefit from full editor tooling.
+
+- "styles" let us write small bits of CSS directly inside the @Component decorator as inline strings,
+ which is perfect for quick or dynamic tweaks without creating extra files.
+
+ ​🟥 What to Choose b/w styleUrls & styles?
+
+- Choose "styleUrls" when the component has many styles or we want to share style files across multiple components—separate files keep the project organized and maintainable.
+
+ -Choose "styles" when we only need a handful of CSS rules (e.g., under ten lines) so we can avoid having too many files and keep everything in one place.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 4. Angular Build Process: Study how Angular compiles and bundles the application by examining the structure and options in angular.json.
+
+​🟥 How Angular compiles and bundles the application?
+
+[1] angular.json
+      ↓
+[2] ng serve command
+      ↓
+[3] architect → serve → development
+      ↓
+[4] buildTarget: my-firstangular-project:build:development
+      ↓
+[5] architect → build → development
+      ↓
+[6] options
+      ↓
+├── index.html      ← HTML skeleton
+├── main.ts         ← Entry point (bootstraps Angular)
+│     ↓
+│   app.module.ts   ← Root Angular module
+│     ↓
+│   app.component.ts/html/css ← Root component (view logic)
+├── styles.css      ← Global styles
+├── assets/         ← Static files (e.g., images, icons)
+├── polyfills       ← Adds browser compatibility
+└── tsconfig.app.json ← TypeScript compiler settings
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 5. Default Configuration Files: Review key configuration files and their roles in the Angular build and dev experience:
+
+
+​🟥 angular.json:
+
+Role: Tells the Angular CLI how to build, serve, and test the app (entry points, assets, output folders) 
+What’s inside: Build options (outputPath, index, main), asset and style lists, and named “configurations” for production vs. development 
+If deleted: The CLI won’t know how to compile or serve the app—you’ll get errors like “Could not find project in workspace.”
+
+​🟥 tsconfig.json:
+
+Role: Defines TypeScript compiler settings for the entire workspace (target JS version, strict checks) 
+What’s inside: Rules like target: "ES2022", strict: true, module resolution, plus Angular‑specific compiler options under angularCompilerOptions 
+If deleted: tsc (and ng build) will fall back to defaults or fail entirely, causing type errors and possibly preventing the code from compiling.
+
+​🟥 tsconfig.app.json:
+
+Role: Extends tsconfig.json with settings specific to building the application code (not tests) 
+What’s inside: Inherits from tsconfig.json, sets outDir for app output, and lists files like src/main.ts to include 
+If deleted: The CLI won’t know which files make up the app or where to put compiled output, leading to build failures.
+
+​🟥 tsconfig.spec.json:
+
+Role: Provides TypeScript settings for running the unit tests (via Karma/Jasmine) 
+What’s inside: Inherits from tsconfig.json, points at test entry files, and may include test‑specific types like jasmine 
+If deleted: Tests will not compile or run, as the CLI can’t configure TypeScript for the spec files.
+
+​🟥 app.routes.ts:
+
+Role: Defines the application’s route table—mapping URL paths to components 
+What’s inside: An exported routes array of { path, component } objects, used by provideRouter(routes) 
+If deleted: Navigation in the app will break—there’ll be no route definitions, so links and URL changes won’t render the correct views.
+
+​🟥 app.config.ts:
+
+Role: Bundles up application‑wide providers (like routing and change‑detection settings) for standalone bootstrapping 
+What’s inside: An ApplicationConfig object with providers such as provideZoneChangeDetection(...) and provideRouter(routes) 
+If deleted: the app won’t know about routing or zone‑based change detection settings—bootstrap may fail or run with default (and likely unwanted) behavior.
+
+​🟥 main.ts:
+
+Role: The runtime entry point that launches the Angular app via bootstrapApplication(...) 
+What’s inside: Imports of bootstrapApplication, AppComponent (or other root components), and the appConfig, then calls .catch(...) for errors 
+If deleted: The application never starts—there’s no code to bootstrap the root component into index.html.
+
+​🟥 index.html:
+
+Role: The base HTML page loaded by the browser, containing the <app-root></app-root> placeholder for Angular to render into.
+What’s inside: Standard <head> tags (<meta>, <base href="/">, favicon), plus <body><app-root></app-root></body>.
+If deleted: the app has nowhere to render; the browser shows a blank page or 404.
+
+​🟥 .editorconfig:
+
+Role: Instructs editors/IDEs how to format files (indent size, line endings) for consistency across the team 
+What’s inside: Key‑value rules like indent_style = space, indent_size = 2, end_of_line = lf 
+If deleted: Developers may have mixed formatting (tabs vs. spaces, wrong line endings), leading to messy diffs—but the code still compiles.
+
+​🟥 package.json:
+
+Role: Describes the project (name, version) and lists dependencies, scripts, and metadata for npm 
+What’s inside: Fields like "dependencies", "devDependencies", "scripts" (e.g., ng serve, ng build), and project info 
+If deleted: npm can’t install or run scripts; we lose all dependency definitions—your app won’t build or run.
+
+​🟥 package-lock.json:
+
+Role: Locks exact versions of every installed package to ensure consistent installs across machines 
+What’s inside: A full dependency tree with resolved versions and integrity hashes 
+If deleted: npm will re-resolve versions on each install, potentially installing newer (and untested) versions—introducing “it works on my machine” problems.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 6. Bootstrap Process in Angular: Analyze how Angular bootstraps the app using files like main.ts and AppModule.
+
+When we run "ng serve", Angular initializes the application through a series of steps:
+
+index.html
+   ↓
+main.ts
+   ↓
+AppModule (app.module.ts)
+   ↓
+AppComponent (app.component.ts)
+   ↓
+AppComponent Template (app.component.html)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 7. Understanding the Differences: Difference between tsconfig.json and angular.json, and their respective responsibilities in compiling and building Angular apps.
+
+​🟥 tsconfig.json: 
+tells TypeScript how to turn the .ts code into JavaScript—what language level to target, 
+which files to include, and which strict‑type checks to apply.
+
+​🟥 angular.json: 
+tells the Angular CLI how to build, serve, and test the app—where the entry files live, 
+what assets and styles to bundle, and which settings to use for production vs. development.
+
+In short, tsconfig.json is for the TypeScript compiler, while angular.json is for the Angular CLI toolchain that packages and runs the application.
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 8. Angular in the Browser: Discover how Angular works in the browser including DOM rendering, and compare Angular's change detection mechanism to React’s virtual DOM strategy.
+
+​🟥 Angular: (change detection)
+Uses a change detection mechanism to directly update the real DOM.​
+
+​🟥 React: (diffing - necessary updation only)
+Employs a Virtual DOM to efficiently determine and apply necessary updates to the real DOM.​
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+🟢 9. How "Change Detection mechanism" works in Angular? What is the actual way to optimize it?
+
+​🟥 Change Detection Mechanism:  
+
+     " roots -> child components -> compare the current value with the previous values of DOM Tree "
+
+now if we use, "onPush" strategy, it will optimize the code in such way that it makes change detection mechanism specific to a component change only and avoiding checking all of the app components. 
+
+But in case of  "default" , angular will check each and every component for change rendering.
+
+In this way, our code is optimized using "onPush" strategy.
